@@ -63,7 +63,7 @@ public final class Triage {
     }
 
     /**
-     * A draft the person can edit and send themself. Tumbuh never sends anything.
+     * A draft the person can edit and send themself. tumbuh never sends anything.
      * Returns "" when there is no sensible draft for this decision.
      */
     public static String draft(Item it, String decision) {

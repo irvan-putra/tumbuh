@@ -40,11 +40,11 @@ public final class Codec {
         return root.toString(2);
     }
 
-    /** Throws JSONException for anything that is not a Tumbuh backup. Never returns partial data. */
+    /** Throws JSONException for anything that is not a tumbuh backup. Never returns partial data. */
     public static List<Item> decode(String text) throws JSONException {
         JSONObject root = new JSONObject(text);
-        if (!FORMAT.equals(root.optString("format"))) throw new JSONException("Not a Tumbuh backup");
-        if (root.optInt("version", 0) > VERSION) throw new JSONException("Backup is from a newer Tumbuh");
+        if (!FORMAT.equals(root.optString("format"))) throw new JSONException("Not a tumbuh backup");
+        if (root.optInt("version", 0) > VERSION) throw new JSONException("Backup is from a newer tumbuh");
         JSONArray arr = root.getJSONArray("items");
         List<Item> out = new ArrayList<>();
         for (int i = 0; i < arr.length(); i++) {

@@ -1,4 +1,4 @@
-name: Tumbuh qualification
+name: tumbuh qualification
 
 on:
   workflow_dispatch:

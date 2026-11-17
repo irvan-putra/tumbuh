@@ -85,7 +85,7 @@ public class MainActivity extends Activity {
 
     // ---------- screens ----------
     private void homeScreen() {
-        col.addView(title("Tumbuh"));
+        col.addView(title("tumbuh"));
         col.addView(muted("Find your bearings. Everything stays on this phone."));
 
         Item start = Triage.startHere(items);
@@ -187,8 +187,8 @@ public class MainActivity extends Activity {
     }
 
     private void aboutScreen() {
-        col.addView(title("About Tumbuh " + BuildInfo.VERSION));
-        col.addView(body("\nTumbuh helps you sort what is weighing on you: commitments, a full inbox, a messy space, and people you lost touch with. "
+        col.addView(title("About tumbuh " + BuildInfo.VERSION));
+        col.addView(body("\ntumbuh helps you sort what is weighing on you: commitments, a full inbox, a messy space, and people you lost touch with. "
             + "Add things, decide what to keep, renegotiate, ask help for, or let go, and take one small step."));
         col.addView(section("\nWhat it does not do"));
         col.addView(body("- It does not read your email, messages, contacts or calendar. You add things by hand.\n"
@@ -237,7 +237,7 @@ public class MainActivity extends Activity {
         if (d.isEmpty()) d = Triage.draft(it, Item.RENEGOTIATE);
         final EditText input = edit("Draft", d, true);
         new AlertDialog.Builder(this).setTitle("Draft for you to edit")
-            .setMessage("Fill in the [brackets]. Tumbuh sends nothing; you choose how to send it.")
+            .setMessage("Fill in the [brackets]. tumbuh sends nothing; you choose how to send it.")
             .setView(wrapScroll(boxOf(input)))
             .setPositiveButton("Share...", (dd, w) -> {
                 Intent send = new Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, input.getText().toString());
@@ -245,7 +245,7 @@ public class MainActivity extends Activity {
             })
             .setNeutralButton("Copy", (dd, w) -> {
                 ((ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE))
-                    .setPrimaryClip(ClipData.newPlainText("Tumbuh draft", input.getText().toString()));
+                    .setPrimaryClip(ClipData.newPlainText("tumbuh draft", input.getText().toString()));
                 toast("Copied");
             })
             .setNegativeButton("Close", null).show();
@@ -335,7 +335,7 @@ public class MainActivity extends Activity {
                     }).setNegativeButton("Cancel", null).show();
             }
         } catch (IOException | JSONException | RuntimeException e) {
-            toast(req == REQ_IMPORT ? "That file is not a Tumbuh backup. Nothing changed." : "Could not save the backup");
+            toast(req == REQ_IMPORT ? "That file is not a tumbuh backup. Nothing changed." : "Could not save the backup");
         }
     }
 

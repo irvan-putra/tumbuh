@@ -1,6 +1,6 @@
-name: Tumbuh signed release
+name: tumbuh signed release
 
-# Manual only. Builds the release APK, signs it with the Tumbuh key from repository secrets,
+# Manual only. Builds the release APK, signs it with the tumbuh key from repository secrets,
 # verifies the signature and package, then publishes a GitHub pre-release with a direct APK link.
 on:
   workflow_dispatch:
@@ -63,7 +63,7 @@ jobs:
         run: |
           VER="${{ steps.v.outputs.version }}"
           cat > notes.md <<NOTES
-          Tumbuh ${VER}, first test build. Signed with the Tumbuh key (certificate SHA-256 ${EXPECTED_CERT_SHA256}).
+          tumbuh ${VER}, icon update (name now lowercase). Signed with the tumbuh key (certificate SHA-256 ${EXPECTED_CERT_SHA256}).
 
           Offline, no permissions. Items are added by hand; drafts are text you send yourself.
           Not yet tested on a real phone. No reminders, accounts or sync.
@@ -71,4 +71,4 @@ jobs:
           SHA-256 of the APK is in the attached .sha256 file.
           NOTES
           gh release create "v${VER}" "tumbuh-v${VER}.apk" "tumbuh-v${VER}.apk.sha256" \
-            --title "Tumbuh ${VER}" --notes-file notes.md --prerelease --target "${GITHUB_SHA}"
+            --title "tumbuh ${VER}" --notes-file notes.md --prerelease --target "${GITHUB_SHA}"

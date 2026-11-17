@@ -1,4 +1,4 @@
-name: Tumbuh emulator smoke test (synthetic data)
+name: tumbuh emulator smoke test (synthetic data)
 
 on:
   workflow_dispatch:

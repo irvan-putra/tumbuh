@@ -1,6 +1,6 @@
-# Tumbuh (Android app)
+# tumbuh (Android app)
 
-Tumbuh helps you find your bearings when you are carrying too much: dropped commitments, a full inbox, a messy space, and people you lost touch with.
+tumbuh helps you find your bearings when you are carrying too much: dropped commitments, a full inbox, a messy space, and people you lost touch with.
 
 You add what is weighing on you by hand, give it a weight from 1 to 5, and decide for each item: keep it, renegotiate it, ask for help, let it go, or mark it done. For each decision you get a small first step. For renegotiating, asking for help and reconnecting you get a draft message to edit and send yourself. "Start here" on the home screen shows the heaviest open item.
 
