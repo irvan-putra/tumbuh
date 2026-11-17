@@ -41,15 +41,7 @@ jobs:
           target: google_apis
           profile: pixel_6
           disable-animations: true
-          script: |
-            if [ -n "$RELEASE_TAG" ]; then
-              mkdir -p /tmp/rel && gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --dir /tmp/rel --pattern '*.apk' --pattern '*.sha256'
-              (cd /tmp/rel && sha256sum -c *.sha256)
-              adb install -r /tmp/rel/tumbuh-*.apk
-            else
-              adb install -r app/build/outputs/apk/debug/tumbuh-v0.1.0-debug.apk
-            fi
-            python3 ci/smoke.py
+          script: bash ci/run.sh
       - uses: actions/upload-artifact@v4
         if: always()
         with:
