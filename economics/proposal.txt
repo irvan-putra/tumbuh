@@ -1,0 +1,208 @@
+Can Tumbuh start from zero?
+Historical proposal - inputs dated 24 Oct 2026
+Possible with time instead of cash, assuming you already have a laptop, internet and free accounts. Seven models below, in two families - selling your hours, and building something once that sells without you in the room - each with cash cost, two kinds of break-even, and an explicit scenario. Your time is valued at Rp200k per hour - a valuation assumption, not a market rate. Platform fees below were checked on their official pages on 24 Oct 2026; your own bank's transfer fees are unverified. Every sales number is a scenario - no paying customers have been observed yet, which says nothing about whether any would buy.
+Historical assumptions, not current platform advice
+Fee models, payout eligibility and free-tier limits may have changed. Formula checks and rounding notes are in
+the assumptions note
+. Workshop refund claims below are proposed terms only. No customer or income claim is made by publishing this proposal.
+Public planning draft - not a business launch
+Tumbuh is a working project name, formerly Insting. These seven generic models and hypothetical calculations are proposals, not a selected business plan, current price quote, income forecast or offer for sale. Inputs were recorded on 24 Oct 2026 and have not been reverified for this 17 Nov adaptation. No signup, payment or booking is available. Domain and trademark availability are unchecked.
+The short answer
+Zero cash works two ways. Sell your hours - workshop, mentoring, service - and payment should arrive sooner, but the hours repeat with every sale. Or build a product once - playbook, software tool, subscription app - and the first payment takes longer, but later copies need much less work per sale. Both are unproven hypotheses until someone pays.
+With near-zero cash in, cash ROI is undefined - the real input is your time. So each model shows a cash break-even and an economic break-even that counts your hours at Rp200k each. A scenario that sells less than the economic break-even loses money once your time is counted, and this page says so openly instead of hiding it in gross revenue. Consultation is not the only route. Shorter time to first payment is a hypothesis, not observed evidence.
+The seven models
+1. Pre-sold workshop: from skill to sellable offer
+Cash to start
+Near Rp 0 - assumes laptop, internet, Google Meet, Google Forms, manual bank transfer
+Platform fees
+None when collecting by manual transfer; your own bank's transfer fees, if any, are unverified - treat as a small sensitivity
+Scope and time
+2 sessions x 2 hours live, max 20 seats; ~20h total: 10h prep, 4h selling, 4h live, 2h support and refunds
+Cash break-even
+The first paid seat, because cash costs are near zero
+Economic break-even
+20 seats at Rp200k, or 16 at Rp250k - 20h x Rp200k = Rp4.0jt of imputed labor
+Scenario: 15 seats at Rp200k
+Rp3.0jt cash in, minus Rp4.0jt labor = -Rp1.0jt, before tax and refunds
+Scenario: full house at Rp250k
+20 seats = Rp5.0jt cash in, minus Rp4.0jt labor = +Rp1.0jt
+Return on your time
+Full house at Rp250k: +Rp1.0jt over Rp4.0jt imputed labor = a 25% labor-inclusive return, before fees, tax and refunds. Cash ROI is undefined when cash in is near zero
+Cohort two onward
+Prep drops to ~2h reusing material, ~12h total: break-even falls to 12 seats at Rp200k, and 15 seats turns +Rp600k
+2. Digital playbook or templates at $15
+Cash to start
+$0 - Gumroad and Lemon Squeezy are free to open
+Historical fee assumptions (24 Oct 2026)
+Gumroad 10% + 50c + card processing 2.9% + 30c; Lemon Squeezy 5% + 50c + 1.5% international + ~3% payout
+Net per $15 sale
+$12.26 (Gumroad) or $13.11 (Lemon Squeezy), after platform fees, before tax
+Your time
+~35h: 30h writing, 5h selling = Rp7.0jt (about $387) of imputed labor
+Economic break-even
+About 32 sales (Gumroad) or 30 (Lemon Squeezy)
+Scenario: 10 sales in month one
+$122.60 cash (about Rp2.2jt), minus Rp7.0jt labor = -Rp4.8jt; it only pays back if sales continue after month one
+3. 1:1 mentoring on MentorCruise
+Cash to start
+$0 - no membership fee for mentors
+You keep
+80% of the monthly rate you set
+Your time
+~2h per mentee per month (calls plus async) = Rp400k, about $22
+Economic break-even
+A monthly rate of about $28 or more per mentee covers the time
+Scenario: 3 mentees at $80
+$192/month cash after the 20% fee (about Rp3.5jt), minus Rp1.2jt labor = +Rp2.3jt per month
+Payout route needs a check
+The source draft assumed Stripe or PayPal payout. Current Indonesian eligibility, payout support, fees and identity requirements have not been checked for this adaptation. Confirm with the provider before relying on a route or counting income.
+4. Paid insider community on Telegram
+Cash to start
+Rp 0
+Price to test
+Rp50k per member per month (assumption)
+Your time
+~6h per month of curated leads and content = Rp1.2jt of imputed labor, ongoing
+Economic break-even
+24 members - below that, the content work costs more than the memberships bring in
+Scenario: 20 members
+Rp1.0jt cash in, minus Rp1.2jt labor = -Rp200k per month
+5. Deposit-funded scoped service
+The offer
+A fixed-scope deliverable, for example: a sellable offer packaged with page and payment in one week
+Price to test
+Rp1.5-3jt per project, 50% deposit up front (assumption)
+Your time
+6-10h delivery = Rp1.2-2.0jt of imputed labor
+Economic break-even
+Rp1.5jt works only if delivery stays under 7.5h; at 10h it loses Rp500k. Rp3jt at 10h turns +Rp1.0jt
+A deposit is not profit
+A deposit collected before delivery is working capital plus a refund liability - you owe the work or the money back. It funds operations, but the project only makes economic sense if the price beats the hours. Scope and refund terms must be written before taking anyone's money.
+6. A paid software tool or starter kit
+The offer
+Build once, sell copies: for example a small Python tool or a generic starter kit, sold on Gumroad at $19
+Cash to start
+$0 - static page on GitHub Pages, payment and delivery via Gumroad; no server to run
+Net per $19 sale
+$15.75 (Gumroad) or $16.70 (Lemon Squeezy), after platform fees, before tax - about Rp285k or Rp302k
+Your time
+~70h upfront: 55h build, 5h docs, 10h selling = Rp14.0jt (about $774) of imputed labor; then ~3h per month of support and updates
+Economic break-even
+About 50 sales (Gumroad) or 47 (Lemon Squeezy) to cover the upfront time, plus about 2-3 sales per month to cover ongoing support
+Scenario: 15 sales in three months
+$236 cash (about Rp4.3jt), minus 79h of labor (70h upfront + 9h support = Rp15.8jt) = -Rp11.5jt; it pays back only if copies keep selling without much new work
+7. A small subscription tool (micro-SaaS)
+The offer
+A niche $5 per month utility. Revenue recurs with much less work per subscriber; likely the slowest of the seven to pay back (hypothesis - there is no demand data)
+Cash to start
+$0 at low usage on free hosting tiers (GitHub Pages, Cloudflare, Vercel); usage limits are unverified - if the tool grows past them, real hosting costs appear
+Net per subscriber per month
+About $3.56 (about Rp64k) after Gumroad fees, before tax
+Your time
+~80h upfront = Rp16.0jt of imputed labor, plus ~8h per month to keep it running = Rp1.6jt per month, ongoing
+Economic break-even
+Monthly contribution = Rp64k x subscribers - Rp1.6jt ongoing labor. Below 25 subscribers it loses money every month, and at exactly 25 the upfront Rp16.0jt is never recovered. Payback of the upfront time: ~50 months at 30 subscribers, ~10 at 50, ~4 at 100
+Scenario: 3, 6, then 10 subscribers over months 1-3
+Rp1.2jt total cash (19 subscriber-months), minus 104h of labor (80h upfront + 24h running = Rp20.8jt) = -Rp19.6jt
+One possible first three months
+On small screens, scroll each chart sideways. Rounded amounts and calculations are also listed below in text.
+Cash after fee assumptions (Rp million)
+0
+4
+8
+12
+Mentoring, 3 mentees, 3 months
+10.4
+Workshop, one full house
+5
+Tool or kit, 15 sales
+4.3
+Community, 20 members, 3 months
+3
+Playbook, 10 sales
+2.2
+SaaS, 3-6-10 subscriber ramp
+1.2
+After imputed labor (Rp million)
+-20
+-16
+-12
+-8
+-4
+0
+4
+8
+12
+Mentoring, 3 mentees, 3 months
+6.8
+Workshop, one full house
+1
+Tool or kit, 15 sales
+-11.5
+Community, 20 members, 3 months
+-0.6
+Playbook, 10 sales
+-4.8
+SaaS, 3-6-10 subscriber ramp
+-19.6
+The scoped-service option has no fixed three-month volume scenario, so it is not in these six bars. Values are rounded historical scenarios, not observed sales.
+Download chart data (CSV)
+.
+One common three-month window for every bar. Inputs: one full-house cohort at Rp250k; 3 mentees at $80 less the 20% fee; 10 playbook sales at $15 less fees; 15 tool sales at $19 less fees; 20 members at Rp50k; a 3, 6, 10 subscriber ramp at $5 less fees. USD at Rp18,090 (24 Oct 2026). Scenarios, not forecasts - the inputs are illustrative, not a ranking of likelihood.
+Mentoring, 3 mentees, 3 months
+Rp10.4jt cash minus Rp3.6jt labor (18h)
++Rp6.8jt
+Workshop, one full house
+Rp5.0jt cash minus Rp4.0jt labor (20h)
++Rp1.0jt
+Community, 20 members, 3 months
+Rp3.0jt cash minus Rp3.6jt labor (18h)
+-Rp0.6jt
+Playbook, 10 sales
+Rp2.2jt cash minus Rp7.0jt labor (35h)
+-Rp4.8jt
+Tool or kit, 15 sales
+Rp4.3jt cash minus Rp15.8jt labor (79h)
+-Rp11.5jt
+SaaS, 3-6-10 subscriber ramp
+Rp1.2jt cash minus Rp20.8jt labor (104h)
+-Rp19.6jt
+The same three-month scenarios after imputed labor at Rp200k per hour. Products look worst here because the hours come before the sales; their advantage appears only if copies keep selling after launch with much less work per sale. Higher on paper does not mean more likely to sell - none of the seven has observed demand yet.
+What near-zero cash really means
+Time is the real capital: roughly 15 to 80 hours before the first rupiah depending on the model, valued at Rp200k per hour purely as a decision rule. Selling hours starts cheapest; products cost the most upfront.
+Near-zero cash assumes equipment you already own: a working laptop, internet, and free-tier accounts (GitHub Pages, Meet, Forms). Replace any of those and real costs appear.
+A relevant developer or creator community could be an initial audience hypothesis. Permission and community norms still apply; no outreach is part of this proposal.
+Money only appears when you choose it: a domain listed at about $8-16 per year when checked (the real price is only fixed at checkout), and payout accounts (Payoneer or PayPal) once buyers come from abroad.
+The order to do it in
+1
+Hypothesis, untested: pre-selling workshop number one to your network - 10-20 seats at Rp200k-250k, run within two weeks - is the cheapest quick demand test, because pre-sales measure real payment intent before anything gets built.
+2
+If you would rather build than teach: start with the $15 playbook or the $19 tool or kit - the smallest products with a sellable copy - not a subscription app, which looks like the slowest payback of the seven (hypothesis, based on its arithmetic above).
+3
+Either way, the first version goes out before it is perfect, and the demand answer comes from real payments, not from building more.
+4
+Mentoring, community and deposit-funded service stay as later add-ons once something shows people pay you.
+5
+Domain timing is your call - my recommendation is to wait for first revenue, not a decision made for you. Historical former-name example, not a Tumbuh availability check: insting.org was listed at about $8 first year, $12 renewal on Porkbun's pricing page when checked; price and availability are only fixed at checkout, and insting.com was reported parked at a premium marketplace.
+Honest limits
+No customers observed yet
+Every sales number on this page is a scenario, not a forecast or a promise of income. No paying customers have been observed - that is not proof none would buy, and cheap tests exist to find out before big hours go in. Tumbuh could also make nothing. The Rp200k hourly value is a valuation assumption, not a market rate. Any income is taxable. The source draft recorded platform-fee checks dated 24 Oct 2026; these have not been reverified and can change; bank transfer fees are unverified.
+Sources
+Gumroad pricing and fees:
+gumroad.com/pricing
+and
+fee details
+Lemon Squeezy fees:
+docs.lemonsqueezy.com/help/getting-started/fees
+MentorCruise mentor terms (80% earnings):
+mentorcruise.com/mentor
+USD to IDR at Rp18,090:
+open.er-api.com
+and
+Google Finance
+, 24 Oct 2026
+Indonesian course price anchor:
+dicoding.com/subscriptions
+Domain prices:
+porkbun.com/products/domains
+Public proposal adaptation dated 17 Nov 2026. Historical fee and exchange-rate inputs are dated 24 Oct 2026, not current quotes. No model selected, no sales promised, and no signup or payment enabled.
