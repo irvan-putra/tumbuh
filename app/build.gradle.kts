@@ -21,6 +21,26 @@ android {
         versionName = appVersionName
     }
 
+    signingConfigs {
+        create("release") {
+            val ks = System.getenv("TUMBUH_KEYSTORE_FILE")
+            if (ks != null) {
+                storeFile = file(ks)
+                storePassword = System.getenv("TUMBUH_STORE_PASSWORD")
+                keyAlias = System.getenv("TUMBUH_KEY_ALIAS")
+                keyPassword = System.getenv("TUMBUH_KEY_PASSWORD")
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            if (System.getenv("TUMBUH_KEYSTORE_FILE") != null) {
+                signingConfig = signingConfigs.getByName("release")
+            }
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
