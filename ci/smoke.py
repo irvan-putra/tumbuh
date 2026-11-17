@@ -44,6 +44,7 @@ def tap(text, exact=False, tries=6):
             adb("shell", "input", "tap", str(x), str(y))
             time.sleep(0.8)
             return
+        adb("shell", "input", "swipe", "540", "1700", "540", "700", "300")  # scroll down
         time.sleep(1)
     shot("FAILED-" + re.sub(r"\W+", "_", text)[:30])
     print("NOT FOUND:", text); sys.exit(1)
@@ -102,7 +103,10 @@ tap("Open", exact=True)
 tap("Bring it back")
 need("Not decided"); shot("12-brought-back")
 
-tap("Back", exact=True)
+adb("shell", "input", "keyevent", "4"); time.sleep(1)   # item -> area
+adb("shell", "input", "keyevent", "4"); time.sleep(1)   # area -> home
+need("Start here")
 tap("About and limits")
 need("does not read your email"); shot("13-about")
+adb("shell", "input", "swipe", "540", "1700", "540", "500", "300"); shot("14-about-bottom")
 print("SMOKE OK")
