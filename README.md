@@ -4,7 +4,7 @@ Tumbuh helps you find your bearings when you are carrying too much: dropped comm
 
 You add what is weighing on you by hand, give it a weight from 1 to 5, and decide for each item: keep it, renegotiate it, ask for help, let it go, or mark it done. For each decision you get a small first step. For renegotiating, asking for help and reconnecting you get a draft message to edit and send yourself. "Start here" on the home screen shows the heaviest open item.
 
-Version 0.1.0 (first MVP).
+Version 0.1.1 (icon update; 0.1.0 was the first MVP).
 
 ## What it does not do
 

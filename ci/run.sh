@@ -6,6 +6,6 @@ if [ -n "${RELEASE_TAG:-}" ]; then
   (cd /tmp/rel && sha256sum -c ./*.sha256)
   adb install -r /tmp/rel/tumbuh-v*.apk
 else
-  adb install -r app/build/outputs/apk/debug/tumbuh-v0.1.0-debug.apk
+  adb install -r app/build/outputs/apk/debug/tumbuh-v0.1.1-debug.apk
 fi
 python3 ci/smoke.py
