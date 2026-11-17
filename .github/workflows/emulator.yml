@@ -2,6 +2,11 @@ name: Tumbuh emulator smoke test (synthetic data)
 
 on:
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Optional release tag (e.g. v0.1.0). When set, tests that published APK instead of a debug build."
+        required: false
+        default: ""
   push:
     branches: [main]
 
@@ -27,6 +32,9 @@ jobs:
           sudo udevadm trigger --name-match=kvm
       - name: Run the app on an emulator and capture screenshots
         uses: reactivecircus/android-emulator-runner@v2
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+          GH_TOKEN: ${{ github.token }}
         with:
           api-level: 34
           arch: x86_64
@@ -34,7 +42,13 @@ jobs:
           profile: pixel_6
           disable-animations: true
           script: |
-            adb install -r app/build/outputs/apk/debug/tumbuh-v0.1.0-debug.apk
+            if [ -n "$RELEASE_TAG" ]; then
+              mkdir -p /tmp/rel && gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --dir /tmp/rel --pattern '*.apk' --pattern '*.sha256'
+              (cd /tmp/rel && sha256sum -c *.sha256)
+              adb install -r /tmp/rel/tumbuh-*.apk
+            else
+              adb install -r app/build/outputs/apk/debug/tumbuh-v0.1.0-debug.apk
+            fi
             python3 ci/smoke.py
       - uses: actions/upload-artifact@v4
         if: always()
