@@ -132,7 +132,7 @@ tap("tumbuh-v0.1.0-b")
 time.sleep(2)
 if not present("Restore 1 items?"):
     # tap the file thumbnail by coordinates (grid item), then again if still on the picker
-    adb("shell", "input", "tap", "300", "560"); time.sleep(2)
+    adb("shell", "input", "tap", "300", "900"); time.sleep(2)
 if not present("Restore 1 items?") and present("Files in Downloads"):
     tap("tumbuh-v0.1.0-b"); time.sleep(2)
 need("Restore 1 items?"); shot("19-restore-confirm")
