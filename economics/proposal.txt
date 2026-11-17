@@ -6,7 +6,7 @@ Fee models, payout eligibility and free-tier limits may have changed. Formula ch
 the assumptions note
 . Workshop refund claims below are proposed terms only. No customer or income claim is made by publishing this proposal.
 Public planning draft - not a business launch
-Tumbuh is a working project name, formerly Insting. These seven generic models and hypothetical calculations are proposals, not a selected business plan, current price quote, income forecast or offer for sale. Inputs were recorded on 24 Oct 2026 and have not been reverified for this 17 Nov adaptation. No signup, payment or booking is available. Domain and trademark availability are unchecked.
+These seven generic models and hypothetical calculations are proposals, not a selected business plan, current price quote, income forecast or offer for sale. Inputs were recorded on 24 Oct 2026 and have not been reverified for this 17 Nov adaptation. No signup, payment or booking is available. Domain and trademark availability are unchecked.
 The short answer
 Zero cash works two ways. Sell your hours - workshop, mentoring, service - and payment should arrive sooner, but the hours repeat with every sale. Or build a product once - playbook, software tool, subscription app - and the first payment takes longer, but later copies need much less work per sale. Both are unproven hypotheses until someone pays.
 With near-zero cash in, cash ROI is undefined - the real input is your time. So each model shows a cash break-even and an economic break-even that counts your hours at Rp200k each. A scenario that sells less than the economic break-even loses money once your time is counted, and this page says so openly instead of hiding it in gross revenue. Consultation is not the only route. Shorter time to first payment is a hypothesis, not observed evidence.
@@ -183,7 +183,7 @@ Either way, the first version goes out before it is perfect, and the demand answ
 4
 Mentoring, community and deposit-funded service stay as later add-ons once something shows people pay you.
 5
-Domain timing is your call - my recommendation is to wait for first revenue, not a decision made for you. Historical former-name example, not a Tumbuh availability check: insting.org was listed at about $8 first year, $12 renewal on Porkbun's pricing page when checked; price and availability are only fixed at checkout, and insting.com was reported parked at a premium marketplace.
+Domain timing is your call - my recommendation is to wait for first revenue, not a decision made for you. No domain name availability, registration price, renewal price or trademark status has been checked for this proposal.
 Honest limits
 No customers observed yet
 Every sales number on this page is a scenario, not a forecast or a promise of income. No paying customers have been observed - that is not proof none would buy, and cheap tests exist to find out before big hours go in. Tumbuh could also make nothing. The Rp200k hourly value is a valuation assumption, not a market rate. Any income is taxable. The source draft recorded platform-fee checks dated 24 Oct 2026; these have not been reverified and can change; bank transfer fees are unverified.
