@@ -50,8 +50,10 @@ def tap(text, exact=False, tries=6):
     print("NOT FOUND:", text); sys.exit(1)
 
 def need(text):
-    for _ in range(6):
+    for i in range(6):
         if present(text): return
+        if i >= 2:
+            adb("shell", "input", "swipe", "540", "700", "540", "1800", "300")  # scroll up
         time.sleep(1)
     shot("FAILED-need-" + re.sub(r"\W+", "_", text)[:30])
     print("EXPECTED ON SCREEN:", text); sys.exit(1)
