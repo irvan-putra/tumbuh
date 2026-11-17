@@ -124,14 +124,14 @@ need("Start here"); time.sleep(1); shot("16-after-export")
 tap("Add something that is weighing")
 tap("What is weighing on you"); type_text("Second item added after backup")
 tap("Add", exact=True)
-need("Second item added after backup") if present("Second item added after backup") else need("Commitments (2)")
+need("Second item added after backup") if present("Second item added after backup") else need("Commitments  (2)")
 shot("17-two-items")
 tap("Restore from a backup file")
 time.sleep(2); shot("18-restore-picker")
 tap("tumbuh-v0.1.0-backup")
 need("Restore 1 items?"); shot("19-restore-confirm")
 tap("Restore", exact=True)
-need("Commitments (1)"); shot("20-after-restore")
+need("Commitments  (1)"); shot("20-after-restore")
 
 # bad file is rejected without changing data: the app's own earlier-kept copies are not picked here,
 # so just check the data is unchanged and the app still responds.
