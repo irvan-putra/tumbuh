@@ -23,8 +23,10 @@ def center(b):
     x1, y1, x2, y2 = map(int, m.groups())
     return (x1 + x2) // 2, (y1 + y2) // 2
 
-def find(text, exact=False):
-    for n in nodes():
+def find(text, exact=False, clickable_only=False):
+    ns = nodes()
+    ns = [n for n in ns if n.get("clickable") == "true"] + ([] if clickable_only else ns)
+    for n in ns:
         t = (n.get("text") or "") + " " + (n.get("content-desc") or "")
         t = t.strip().lower()
         if (t == text.lower()) if exact else (text.lower() in t):
