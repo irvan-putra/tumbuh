@@ -34,10 +34,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          APK=$(find app/build/outputs/apk/debug -name 'tumbuh-v0.2.1-debug.apk' -type f | head -1)
+          APK=$(find app/build/outputs/apk/debug -name 'tumbuh-v0.2.2-debug.apk' -type f | head -1)
           test -n "$APK"
           AAPT=$(find "$ANDROID_HOME/build-tools" -mindepth 2 -maxdepth 2 -type f -name aapt | sort -V | tail -1)
-          "$AAPT" dump badging "$APK" | grep -F "package: name='com.vanipy.tumbuh' versionCode='4' versionName='0.2.1'"
+          "$AAPT" dump badging "$APK" | grep -F "package: name='com.vanipy.tumbuh' versionCode='5' versionName='0.2.2'"
           if "$AAPT" dump permissions "$APK" | grep -q 'uses-permission'; then echo "unexpected permission"; "$AAPT" dump permissions "$APK"; exit 1; fi
       - uses: actions/upload-artifact@v4
         with:

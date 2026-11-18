@@ -2,8 +2,8 @@ plugins {
     id("com.android.application")
 }
 
-val appVersionName = "0.2.1"
-val appVersionCode = 4
+val appVersionName = "0.2.2"
+val appVersionCode = 5
 
 base {
     archivesName.set("tumbuh-v$appVersionName")
