@@ -42,7 +42,7 @@ public class TumbuhWidgetProvider extends AppWidgetProvider {
     static RemoteViews buildViews(Context c, boolean compact, boolean tiny) {
         RemoteViews v = new RemoteViews(c.getPackageName(), tiny ? R.layout.widget_tumbuh_tiny : compact ? R.layout.widget_tumbuh_compact : R.layout.widget_tumbuh);
         boolean demo = DemoMode.isOn(c);
-        v.setViewVisibility(R.id.widget_demo_badge, demo ? View.VISIBLE : View.GONE);
+        v.setViewVisibility(R.id.widget_demo_badge, View.GONE);
 
         List<Item> items = Storage.load(c, DemoMode.activeStore(c));
         Item start = Triage.startHere(items);

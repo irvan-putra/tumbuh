@@ -42,6 +42,27 @@ public class WidgetRenderTest {
 
     @Test
     @Config(qualifiers = "mdpi")
+    public void allThirtyGridSpans() throws Exception {
+        Context c = RuntimeEnvironment.getApplication();
+        DemoMode.set(c, true);
+        for (int columns = 1; columns <= 5; columns++) {
+            for (int rows = 1; rows <= 6; rows++) {
+                W = columns * 73 - 16;
+                H = rows * 96 - 16;
+                android.os.Bundle options = new android.os.Bundle();
+                options.putInt(android.appwidget.AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, W);
+                options.putInt(android.appwidget.AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, H);
+                RemoteViews rv = TumbuhWidgetProvider.buildViews(c, options);
+                View view = rv.apply(c, new FrameLayout(c));
+                assertEquals(View.GONE, view.findViewById(R.id.widget_demo_badge).getVisibility());
+                snapshot(rv, c, "span-" + columns + "x" + rows + ".png");
+            }
+        }
+        DemoMode.set(c, false);
+    }
+
+    @Test
+    @Config(qualifiers = "mdpi")
     public void counterAndCompactResize() throws Exception {
         Context c = RuntimeEnvironment.getApplication();
         DemoMode.set(c, true);
