@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.os.Bundle;
 import android.widget.RemoteViews;
 import java.util.List;
 
@@ -15,17 +16,31 @@ public class TumbuhWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager mgr, int[] appWidgetIds) {
-        for (int id : appWidgetIds) mgr.updateAppWidget(id, buildViews(context));
+        for (int id : appWidgetIds) mgr.updateAppWidget(id, buildViews(context, mgr.getAppWidgetOptions(id)));
     }
 
     public static void updateAll(Context context) {
         AppWidgetManager mgr = AppWidgetManager.getInstance(context);
         int[] ids = mgr.getAppWidgetIds(new ComponentName(context, TumbuhWidgetProvider.class));
-        for (int id : ids) mgr.updateAppWidget(id, buildViews(context));
+        for (int id : ids) mgr.updateAppWidget(id, buildViews(context, mgr.getAppWidgetOptions(id)));
     }
 
-    static RemoteViews buildViews(Context c) {
-        RemoteViews v = new RemoteViews(c.getPackageName(), R.layout.widget_tumbuh);
+    @Override
+    public void onAppWidgetOptionsChanged(Context c, AppWidgetManager mgr, int id, Bundle options) {
+        mgr.updateAppWidget(id, buildViews(c, options));
+    }
+
+    static RemoteViews buildViews(Context c, Bundle options) {
+        int height = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 48);
+        return buildViews(c, height < 110, options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 48) < 150);
+    }
+
+    static RemoteViews buildViews(Context c) { return buildViews(c, false); }
+
+    static RemoteViews buildViews(Context c, boolean compact) { return buildViews(c, compact, false); }
+
+    static RemoteViews buildViews(Context c, boolean compact, boolean tiny) {
+        RemoteViews v = new RemoteViews(c.getPackageName(), tiny ? R.layout.widget_tumbuh_tiny : compact ? R.layout.widget_tumbuh_compact : R.layout.widget_tumbuh);
         boolean demo = DemoMode.isOn(c);
         v.setViewVisibility(R.id.widget_demo_badge, demo ? View.VISIBLE : View.GONE);
 
@@ -46,6 +61,14 @@ public class TumbuhWidgetProvider extends AppWidgetProvider {
             counts.append(Item.AREA_NAMES[a]).append(' ').append(Triage.countActive(items, a));
         }
         v.setTextViewText(R.id.widget_counts, counts.toString());
+
+        if (tiny) {
+            int total = 0;
+            for (int a = 0; a < 4; a++) total += Triage.countActive(items, a);
+            v.setContentDescription(R.id.widget_root, "tumbuh: " + total + " open. " + (start == null ? "Nothing here yet" : start.title));
+            v.setTextViewText(R.id.widget_step_title, String.valueOf(total));
+            v.setTextViewText(R.id.widget_step_detail, "open");
+        }
 
         PendingIntent pi = PendingIntent.getActivity(c, 0,
                 new Intent(c, MainActivity.class), PendingIntent.FLAG_IMMUTABLE);

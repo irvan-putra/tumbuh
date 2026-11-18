@@ -17,12 +17,12 @@ import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import org.robolectric.annotation.GraphicsMode;
 
-/** Renders the home-screen widget exactly as the launcher would, to PNG. */
+/** Resource rendering checks only. Real host qualification is separate. */
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = 34)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 public class WidgetRenderTest {
-    private static final int W = 660, H = 320;
+    private int W = 660, H = 320;
 
     private void snapshot(RemoteViews rv, Context c, String outName) throws Exception {
         FrameLayout parent = new FrameLayout(c);
@@ -37,7 +37,26 @@ public class WidgetRenderTest {
         try (FileOutputStream fos = new FileOutputStream(out)) {
             bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
         }
-        assertTrue(out.length() > 2000);
+        assertTrue(out.length() > 300);
+    }
+
+    @Test
+    @Config(qualifiers = "mdpi")
+    public void counterAndCompactResize() throws Exception {
+        Context c = RuntimeEnvironment.getApplication();
+        DemoMode.set(c, true);
+        android.os.Bundle options = new android.os.Bundle();
+        options.putInt(android.appwidget.AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 64);
+        options.putInt(android.appwidget.AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 64);
+        W = 64; H = 64;
+        snapshot(TumbuhWidgetProvider.buildViews(c, options), c, "widget-counter-64dp.png");
+        options.putInt(android.appwidget.AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 350);
+        W = 350;
+        snapshot(TumbuhWidgetProvider.buildViews(c, options), c, "widget-strip-350x64dp.png");
+        options.putInt(android.appwidget.AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 180);
+        H = 180;
+        snapshot(TumbuhWidgetProvider.buildViews(c, options), c, "widget-expanded-350x180dp.png");
+        DemoMode.set(c, false);
     }
 
     @Test
