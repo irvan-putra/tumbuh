@@ -14,9 +14,24 @@ def shot(name):
     open(f"{OUT}/{name}.png", "wb").write(data)
 
 def nodes():
-    adb("shell", "uiautomator", "dump", "/sdcard/ui.xml")
-    xml = adb("exec-out", "cat", "/sdcard/ui.xml").stdout.decode("utf-8", "replace")
-    return [n.attrib for n in ET.fromstring(xml).iter("node")]
+    # UIAutomator can return before a valid dump exists just after boot.
+    # Retry only invalid dumps; never let a prior screen masquerade as current.
+    last = ""
+    for _ in range(5):
+        adb("shell", "rm", "-f", "/sdcard/ui.xml")
+        dump = adb("shell", "uiautomator", "dump", "/sdcard/ui.xml")
+        raw = adb("exec-out", "cat", "/sdcard/ui.xml")
+        xml = raw.stdout.decode("utf-8", "replace")
+        try:
+            if dump.returncode or raw.returncode:
+                raise ET.ParseError("UI dump command failed")
+            return [n.attrib for n in ET.fromstring(xml).iter("node")]
+        except ET.ParseError:
+            last = repr(xml) + "\n" + dump.stdout.decode("utf-8", "replace") + dump.stderr.decode("utf-8", "replace")
+            time.sleep(1)
+    open(f"{OUT}/ui-dump-failure.txt", "w").write(last)
+    shot("FAILED-ui-dump")
+    raise RuntimeError("No valid UIAutomator XML after five attempts; raw diagnostic saved")
 
 def center(b):
     m = re.match(r"\[(\d+),(\d+)\]\[(\d+),(\d+)\]", b)
