@@ -128,13 +128,13 @@ need("Second item added after backup") if present("Second item added after backu
 shot("17-two-items")
 tap("Restore from a backup file")
 time.sleep(2); shot("18-restore-picker")
-tap("tumbuh-v0.1.1-b")
+tap("tumbuh-v")
 time.sleep(2)
 if not present("Restore 1 items?"):
     # tap the file thumbnail by coordinates (grid item), then again if still on the picker
     adb("shell", "input", "tap", "300", "900"); time.sleep(2)
 if not present("Restore 1 items?") and present("Files in Downloads"):
-    tap("tumbuh-v0.1.1-b"); time.sleep(2)
+    tap("tumbuh-v"); time.sleep(2)
 need("Restore 1 items?"); shot("19-restore-confirm")
 tap("Restore", exact=True)
 need("Commitments  (1)"); shot("20-after-restore")
