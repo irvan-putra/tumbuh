@@ -66,7 +66,7 @@ public class TumbuhWidgetProvider extends AppWidgetProvider {
             int total = 0;
             for (int a = 0; a < 4; a++) total += Triage.countActive(items, a);
             v.setContentDescription(R.id.widget_root, "tumbuh: " + total + " open. " + (start == null ? "Nothing here yet" : start.title));
-            v.setTextViewText(R.id.widget_step_title, String.valueOf(total));
+            v.setTextViewText(R.id.widget_step_title, total > 999 ? "999+" : String.valueOf(total));
             v.setTextViewText(R.id.widget_step_detail, "open");
         }
 

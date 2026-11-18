@@ -48,6 +48,8 @@ public class WidgetRenderTest {
         android.os.Bundle options = new android.os.Bundle();
         options.putInt(android.appwidget.AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 64);
         options.putInt(android.appwidget.AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 64);
+        W = 48; H = 48;
+        snapshot(TumbuhWidgetProvider.buildViews(c, options), c, "widget-counter-48dp.png");
         W = 64; H = 64;
         snapshot(TumbuhWidgetProvider.buildViews(c, options), c, "widget-counter-64dp.png");
         options.putInt(android.appwidget.AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 350);
