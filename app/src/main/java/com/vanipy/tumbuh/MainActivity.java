@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle b) {
         super.onCreate(b);
-        items = Storage.load(this);
+        items = Storage.load(this, DemoMode.activeStore(this));
         scroll = new ScrollView(this);
         scroll.setBackgroundColor(BG);
         col = new LinearLayout(this);
@@ -87,6 +87,14 @@ public class MainActivity extends Activity {
     private void homeScreen() {
         col.addView(title("tumbuh"));
         col.addView(muted("Find your bearings. Everything stays on this phone."));
+        if (DemoMode.isOn(this)) {
+            TextView banner = new TextView(this);
+            banner.setText("DEMO - made-up profile (Andi), not your real items");
+            banner.setTextColor(0xFFB42828);
+            banner.setTextSize(14);
+            banner.setTypeface(null, android.graphics.Typeface.BOLD);
+            col.addView(banner);
+        }
 
         Item start = Triage.startHere(items);
         if (start == null) {
@@ -108,6 +116,13 @@ public class MainActivity extends Activity {
         }
         col.addView(spacer(8));
         col.addView(secondary("Archive (let go or done): " + Triage.archived(items).size(), v -> go(3)));
+        col.addView(secondary(DemoMode.isOn(this)
+                ? "Demo data: ON (made-up profile) - tap to switch back to your items"
+                : "Demo data: OFF - tap to show a made-up profile instead", v -> {
+            DemoMode.set(this, !DemoMode.isOn(this));
+            items = Storage.load(this, DemoMode.activeStore(this));
+            show();
+        }));
         col.addView(secondary("Save a backup file", v -> exportBackup()));
         col.addView(secondary("Restore from a backup file", v -> importBackup()));
         col.addView(secondary("About and limits", v -> go(4)));
@@ -350,8 +365,9 @@ public class MainActivity extends Activity {
     }
 
     private void persist() {
-        try { Storage.save(this, items); }
+        try { Storage.save(this, DemoMode.activeStore(this), items); }
         catch (IOException | JSONException e) { toast("Could not save. Use 'Save a backup file' now."); }
+        TumbuhWidgetProvider.updateAll(this);
     }
 
     // ---------- view helpers ----------

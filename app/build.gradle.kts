@@ -2,8 +2,8 @@ plugins {
     id("com.android.application")
 }
 
-val appVersionName = "0.1.1"
-val appVersionCode = 2
+val appVersionName = "0.2.0"
+val appVersionCode = 3
 
 base {
     archivesName.set("tumbuh-v$appVersionName")
@@ -45,9 +45,17 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+            all { it.systemProperty("robolectric.graphicsMode", "NATIVE") }
+        }
+    }
 }
 
 dependencies {
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.robolectric:robolectric:4.14.1") // test-only, not in the APK
     testImplementation("org.json:json:20240303")
 }

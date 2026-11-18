@@ -63,10 +63,10 @@ jobs:
         run: |
           VER="${{ steps.v.outputs.version }}"
           cat > notes.md <<NOTES
-          tumbuh ${VER}, icon update (name now lowercase). Signed with the tumbuh key (certificate SHA-256 ${EXPECTED_CERT_SHA256}).
+          tumbuh ${VER} adds a home-screen widget (one small step plus open counts) and an opt-in demo mode with a made-up profile ("Andi") for showing the app to friends. Demo edits live in a separate file; the real tumbuh.json is never touched by demo mode. Signed with the tumbuh key (certificate SHA-256 ${EXPECTED_CERT_SHA256}).
 
           Offline, no permissions. Items are added by hand; drafts are text you send yourself.
-          Not yet tested on a real phone. No reminders, accounts or sync.
+          No reminders, accounts or sync.
 
           SHA-256 of the APK is in the attached .sha256 file.
           NOTES

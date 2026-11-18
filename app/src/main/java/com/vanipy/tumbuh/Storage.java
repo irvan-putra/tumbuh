@@ -16,7 +16,8 @@ import java.util.List;
 
 /** Private on-device storage. Writes are atomic and the previous version is kept as .bak. */
 final class Storage {
-    private static final String NAME = "tumbuh.json";
+    static final String NAME = "tumbuh.json";
+    static final String DEMO_NAME = "tumbuh-demo.json";
 
     private Storage() {}
 
@@ -29,8 +30,12 @@ final class Storage {
     }
 
     static List<Item> load(Context c) {
-        File f = new File(c.getFilesDir(), NAME);
-        File bak = new File(c.getFilesDir(), NAME + ".bak");
+        return load(c, NAME);
+    }
+
+    static List<Item> load(Context c, String name) {
+        File f = new File(c.getFilesDir(), name);
+        File bak = new File(c.getFilesDir(), name + ".bak");
         for (File candidate : new File[]{f, bak}) {
             if (!candidate.exists()) continue;
             try (FileInputStream in = new FileInputStream(candidate)) {
@@ -43,10 +48,14 @@ final class Storage {
     }
 
     static void save(Context c, List<Item> items) throws IOException, JSONException {
+        save(c, NAME, items);
+    }
+
+    static void save(Context c, String name, List<Item> items) throws IOException, JSONException {
         File dir = c.getFilesDir();
-        File f = new File(dir, NAME);
-        File tmp = new File(dir, NAME + ".tmp");
-        File bak = new File(dir, NAME + ".bak");
+        File f = new File(dir, name);
+        File tmp = new File(dir, name + ".tmp");
+        File bak = new File(dir, name + ".bak");
         try (FileOutputStream out = new FileOutputStream(tmp)) {
             out.write(Codec.encode(items, BuildInfo.VERSION).getBytes(StandardCharsets.UTF_8));
             out.getFD().sync();
