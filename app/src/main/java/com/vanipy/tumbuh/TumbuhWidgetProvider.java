@@ -32,7 +32,7 @@ public class TumbuhWidgetProvider extends AppWidgetProvider {
 
     static RemoteViews buildViews(Context c, Bundle options) {
         int height = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 48);
-        return buildViews(c, height < 110, options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 48) < 150);
+        return buildViews(c, height < 110, options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 48) < 100);
     }
 
     static RemoteViews buildViews(Context c) { return buildViews(c, false); }
