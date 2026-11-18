@@ -1,6 +1,6 @@
 package com.vanipy.tumbuh;
 
 final class BuildInfo {
-    static final String VERSION = "0.1.1";
+    static final String VERSION = "0.2.1";
     private BuildInfo() {}
 }
