@@ -1,3 +1,5 @@
+> Development has moved to [tumbuh/android](https://github.com/irvan-putra/tumbuh/tree/main/android). The consolidated repository contains the original app history, release tags and matching APKs. This repository retains old download links for compatibility. Do not uninstall the app or clear its data for this repository move. Package ID and signing identity are unchanged.
+
 # tumbuh (Android app)
 
 tumbuh helps you find your bearings when you are carrying too much: dropped commitments, a full inbox, a messy space, and people you lost touch with.
