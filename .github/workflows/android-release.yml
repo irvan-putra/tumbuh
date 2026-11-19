@@ -1,0 +1,77 @@
+name: tumbuh signed release
+
+# Manual only. Builds the release APK, signs it with the tumbuh key from repository secrets,
+# verifies the signature and package, then publishes a GitHub pre-release with a direct APK link.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    defaults:
+      run:
+        working-directory: android
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      EXPECTED_CERT_SHA256: "EF3DDFAB73BBF3F4481C1FA4F88B774AF530CBBBDDBB9FB6FA01398442D26C54"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+      - run: chmod +x ./gradlew
+      - name: Read version
+        id: v
+        run: |
+          VER=$(sed -n 's/^val appVersionName = "\(.*\)"/\1/p' app/build.gradle.kts)
+          test -n "$VER"
+          echo "version=$VER" >> "$GITHUB_OUTPUT"
+      - name: Unit tests
+        run: ./gradlew --no-daemon testDebugUnitTest
+      - name: Build and sign
+        env:
+          TUMBUH_KEYSTORE_B64: ${{ secrets.TUMBUH_KEYSTORE_B64 }}
+          TUMBUH_STORE_PASSWORD: ${{ secrets.TUMBUH_STORE_PASSWORD }}
+          TUMBUH_KEY_ALIAS: ${{ secrets.TUMBUH_KEY_ALIAS }}
+          TUMBUH_KEY_PASSWORD: ${{ secrets.TUMBUH_KEY_PASSWORD }}
+        run: |
+          echo "$TUMBUH_KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/tumbuh.jks"
+          export TUMBUH_KEYSTORE_FILE="$RUNNER_TEMP/tumbuh.jks"
+          ./gradlew --no-daemon assembleRelease
+          rm -f "$RUNNER_TEMP/tumbuh.jks"
+      - name: Verify signature, package and permissions
+        shell: bash
+        run: |
+          set -euo pipefail
+          VER="${{ steps.v.outputs.version }}"
+          APK="app/build/outputs/apk/release/tumbuh-v${VER}-release.apk"
+          test -f "$APK"
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          "$BT/apksigner" verify --verbose --print-certs "$APK" | tee /tmp/cert.txt
+          GOT=$(grep -m1 'certificate SHA-256 digest' /tmp/cert.txt | awk '{print toupper($NF)}')
+          test "$GOT" = "$EXPECTED_CERT_SHA256"
+          "$BT/aapt" dump badging "$APK" | grep -F "package: name='com.vanipy.tumbuh'"
+          "$BT/aapt" dump badging "$APK" | grep -F "versionName='${VER}'"
+          if "$BT/aapt" dump permissions "$APK" | grep -q 'uses-permission'; then exit 1; fi
+          cp "$APK" "tumbuh-v${VER}.apk"
+          sha256sum "tumbuh-v${VER}.apk" | tee "tumbuh-v${VER}.apk.sha256"
+      - name: Publish pre-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VER="${{ steps.v.outputs.version }}"
+          cat > notes.md <<NOTES
+          tumbuh ${VER} adds a home-screen widget (one small step plus open counts) and an opt-in demo mode with a made-up profile ("Andi") for showing the app to friends. Demo edits live in a separate file; the real tumbuh.json is never touched by demo mode. Signed with the tumbuh key (certificate SHA-256 ${EXPECTED_CERT_SHA256}).
+
+          Offline, no permissions. Items are added by hand; drafts are text you send yourself.
+          No reminders, accounts or sync.
+
+          SHA-256 of the APK is in the attached .sha256 file.
+          NOTES
+          gh release create "v${VER}" "tumbuh-v${VER}.apk" "tumbuh-v${VER}.apk.sha256" \
+            --title "tumbuh ${VER}" --notes-file notes.md --prerelease --target "${GITHUB_SHA}"
