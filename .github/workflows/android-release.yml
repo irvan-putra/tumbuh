@@ -4,6 +4,11 @@ name: tumbuh signed release
 # verifies the signature and package, then publishes a GitHub pre-release with a direct APK link.
 on:
   workflow_dispatch:
+    inputs:
+      verify_only:
+        description: "Verify existing signing identity without publishing an APK"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -61,6 +66,7 @@ jobs:
           cp "$APK" "tumbuh-v${VER}.apk"
           sha256sum "tumbuh-v${VER}.apk" | tee "tumbuh-v${VER}.apk.sha256"
       - name: Publish pre-release
+        if: inputs.verify_only != true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
