@@ -18,7 +18,7 @@ jobs:
     # patuh pre-publish source gate: package, version format, label,
     # permission/license drift, family icon geometry, badge reads the
     # candidate version. A failure stops the release before anything builds.
-    uses: irvan-putra/patuh/.github/workflows/release-gate.yml@v0.2.1
+    uses: irvan-putra/patuh/.github/workflows/release-gate.yml@4e064163e62a3cf677e11de016ffbb6f4041816b
     with:
       app: tumbuh
       published: false
@@ -90,14 +90,14 @@ jobs:
     # patuh checks the built APK's actual bytes (packaged icon badge) before
     # anything is published. This is the preventive boundary.
     needs: release
-    uses: irvan-putra/patuh/.github/workflows/release-gate.yml@v0.2.1
+    uses: irvan-putra/patuh/.github/workflows/release-gate.yml@4e064163e62a3cf677e11de016ffbb6f4041816b
     with:
       app: tumbuh
       published: false
       candidate_apk_artifact: candidate-apk
 
   publish:
-    needs: candidate-bytes
+    needs: [release, candidate-bytes]
     if: inputs.verify_only != true
     defaults:
       run:
@@ -107,6 +107,7 @@ jobs:
     env:
       EXPECTED_CERT_SHA256: "EF3DDFAB73BBF3F4481C1FA4F88B774AF530CBBBDDBB9FB6FA01398442D26C54"
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         # run steps here default to working-directory android/
         with: { name: candidate-apk, path: android/dist }
@@ -131,7 +132,7 @@ jobs:
     # post-publish: verifies the live release (tag, APK name, checksum,
     # gallery card, downloaded sha256, packaged icon). Detects, cannot undo.
     needs: publish
-    uses: irvan-putra/patuh/.github/workflows/release-gate.yml@v0.2.1
+    uses: irvan-putra/patuh/.github/workflows/release-gate.yml@4e064163e62a3cf677e11de016ffbb6f4041816b
     with:
       app: tumbuh
       published: true
