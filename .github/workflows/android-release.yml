@@ -14,12 +14,24 @@ permissions:
   contents: write
 
 jobs:
+  consistency:
+    # patuh pre-publish source gate: package, version format, label,
+    # permission/license drift, family icon geometry, badge reads the
+    # candidate version. A failure stops the release before anything builds.
+    uses: irvan-putra/patuh/.github/workflows/release-gate.yml@v0.2.1
+    with:
+      app: tumbuh
+      published: false
+
   release:
+    needs: consistency
     defaults:
       run:
         working-directory: android
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    outputs:
+      version: ${{ steps.v.outputs.version }}
     env:
       EXPECTED_CERT_SHA256: "EF3DDFAB73BBF3F4481C1FA4F88B774AF530CBBBDDBB9FB6FA01398442D26C54"
     steps:
@@ -65,12 +77,45 @@ jobs:
           if "$BT/aapt" dump permissions "$APK" | grep -q 'uses-permission'; then exit 1; fi
           cp "$APK" "tumbuh-v${VER}.apk"
           sha256sum "tumbuh-v${VER}.apk" | tee "tumbuh-v${VER}.apk.sha256"
+      - name: Upload candidate APK for the byte check
+        uses: actions/upload-artifact@v4
+        with:
+          name: candidate-apk
+          path: |
+            android/tumbuh-v${{ steps.v.outputs.version }}.apk
+            android/tumbuh-v${{ steps.v.outputs.version }}.apk.sha256
+          retention-days: 1
+
+  candidate-bytes:
+    # patuh checks the built APK's actual bytes (packaged icon badge) before
+    # anything is published. This is the preventive boundary.
+    needs: release
+    uses: irvan-putra/patuh/.github/workflows/release-gate.yml@v0.2.1
+    with:
+      app: tumbuh
+      published: false
+      candidate_apk_artifact: candidate-apk
+
+  publish:
+    needs: candidate-bytes
+    if: inputs.verify_only != true
+    defaults:
+      run:
+        working-directory: android
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      EXPECTED_CERT_SHA256: "EF3DDFAB73BBF3F4481C1FA4F88B774AF530CBBBDDBB9FB6FA01398442D26C54"
+    steps:
+      - uses: actions/download-artifact@v4
+        # run steps here default to working-directory android/
+        with: { name: candidate-apk, path: android/dist }
       - name: Publish pre-release
-        if: inputs.verify_only != true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          VER="${{ steps.v.outputs.version }}"
+          VER="${{ needs.release.outputs.version }}"
+          cp "dist/tumbuh-v${VER}.apk" "dist/tumbuh-v${VER}.apk.sha256" .
           cat > notes.md <<NOTES
           tumbuh ${VER} adds a home-screen widget (one small step plus open counts) and an opt-in demo mode with a made-up profile ("Andi") for showing the app to friends. Demo edits live in a separate file; the real tumbuh.json is never touched by demo mode. Signed with the tumbuh key (certificate SHA-256 ${EXPECTED_CERT_SHA256}).
 
@@ -81,3 +126,12 @@ jobs:
           NOTES
           gh release create "v${VER}" "tumbuh-v${VER}.apk" "tumbuh-v${VER}.apk.sha256" \
             --title "tumbuh ${VER}" --notes-file notes.md --prerelease --target "${GITHUB_SHA}"
+
+  verify:
+    # post-publish: verifies the live release (tag, APK name, checksum,
+    # gallery card, downloaded sha256, packaged icon). Detects, cannot undo.
+    needs: publish
+    uses: irvan-putra/patuh/.github/workflows/release-gate.yml@v0.2.1
+    with:
+      app: tumbuh
+      published: true
