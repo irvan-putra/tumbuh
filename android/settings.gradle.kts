@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "tumbuh-app"
+rootProject.name = "tumbuh"
 include(":app")
