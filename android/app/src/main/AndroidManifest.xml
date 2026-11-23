@@ -3,7 +3,7 @@
     <!-- No permissions on purpose: no internet, no contacts, no mail, no storage. -->
     <application
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:label="tumbuh"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
         <receiver

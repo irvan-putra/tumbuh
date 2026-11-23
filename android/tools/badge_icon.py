@@ -98,10 +98,10 @@ def parse_version(argv, fallback=None):
 
 
 def write_densities(img, res_dir, name="ic_launcher.png"):
-    for dens, px in DENSITIES.items():
-        out = os.path.join(res_dir, "mipmap-" + dens)
-        os.makedirs(out, exist_ok=True)
-        img.resize((px, px), Image.LANCZOS).save(os.path.join(out, name), optimize=True)
+    """Write the single 192px family drawable, without density variants."""
+    out = os.path.join(res_dir, "drawable")
+    os.makedirs(out, exist_ok=True)
+    img.resize((192, 192), Image.LANCZOS).save(os.path.join(out, name), optimize=True)
 
 
 def lens(d, p0, p1, width, fill, size=S):
