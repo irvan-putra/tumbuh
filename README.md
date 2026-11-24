@@ -20,3 +20,7 @@ Build from that directory with `cd android && ./gradlew testDebugUnitTest assemb
 Android qualification, emulator and signed-release workflows are at the repository root under `.github/workflows/android-*.yml`. Pages deploys only the existing website files, never the Android source tree. Existing website paths are unchanged.
 
 Historical downloads remain available in the source repository while the matching releases are preserved here. No repositories or release assets are deleted.
+
+---
+
+Built with AI assistance (Instinct and others). Not everything has been reviewed by Irvan.
